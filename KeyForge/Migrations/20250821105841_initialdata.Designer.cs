@@ -4,6 +4,7 @@ using KeyForge.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KeyForge.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250821105841_initialdata")]
+    partial class initialdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,9 +42,6 @@ namespace KeyForge.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsTrial")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Key")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -54,19 +54,17 @@ namespace KeyForge.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2025, 8, 31, 10, 59, 47, 561, DateTimeKind.Local).AddTicks(6052),
-                            ExpiresAt = new DateTime(2025, 9, 30, 3, 59, 47, 561, DateTimeKind.Utc).AddTicks(6069),
+                            CreateAt = new DateTime(2025, 8, 21, 17, 58, 41, 132, DateTimeKind.Local).AddTicks(4468),
+                            ExpiresAt = new DateTime(2025, 9, 20, 10, 58, 41, 132, DateTimeKind.Utc).AddTicks(4482),
                             IsActive = true,
-                            IsTrial = true,
                             Key = "TEST - KEY - 1234567890"
                         },
                         new
                         {
                             Id = 2,
-                            CreateAt = new DateTime(2025, 8, 31, 10, 59, 47, 561, DateTimeKind.Local).AddTicks(6078),
-                            ExpiresAt = new DateTime(2025, 9, 30, 3, 59, 47, 561, DateTimeKind.Utc).AddTicks(6079),
+                            CreateAt = new DateTime(2025, 8, 21, 17, 58, 41, 132, DateTimeKind.Local).AddTicks(4488),
+                            ExpiresAt = new DateTime(2025, 9, 20, 10, 58, 41, 132, DateTimeKind.Utc).AddTicks(4489),
                             IsActive = false,
-                            IsTrial = true,
                             Key = "TEST - KEY - 1234567891"
                         });
                 });
@@ -193,13 +191,13 @@ namespace KeyForge.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b842ece5-0e43-4d3f-ac90-1e275c1bf594",
+                            Id = "8b3441fe-0fea-4c25-bf8c-20ebfa45c97b",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "7ccc571d-ab5b-4926-a693-05b3b016438a",
+                            Id = "84427a3f-a277-4fa6-ad17-029c05771ae7",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

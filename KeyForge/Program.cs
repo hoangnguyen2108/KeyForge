@@ -23,6 +23,7 @@ builder.Services.AddIdentityCore<ApiUser>(options => options.SignIn.RequireConfi
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddScoped<IAuthManager, AuthManager>();   
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

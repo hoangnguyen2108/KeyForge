@@ -1,4 +1,5 @@
-﻿using KeyForge.Model;
+﻿using KeyForge.Configuration;
+using KeyForge.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -20,21 +21,23 @@ namespace KeyForge.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            modelBuilder.ApplyConfiguration(new RoleNameConfig());
             modelBuilder.Entity<ApiKeyClass>().HasData(new ApiKeyClass
             {
                 Id = 1,
                 Key = "TEST - KEY - 1234567890",
                 CreateAt = DateTime.Now,
                 ExpiresAt = DateTime.UtcNow.AddDays(30),
-                IsActive = true
+                IsActive = true,
+                IsTrial = true
             }, new ApiKeyClass
             {
                 Id = 2,
                 Key = "TEST - KEY - 1234567891",
                 CreateAt = DateTime.Now,
                 ExpiresAt = DateTime.UtcNow.AddDays(30),
-                IsActive = false
+                IsActive = false,
+                IsTrial = true
             });
         }
     }

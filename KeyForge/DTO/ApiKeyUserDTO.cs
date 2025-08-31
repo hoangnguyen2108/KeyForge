@@ -1,12 +1,7 @@
-﻿namespace KeyForge.Model
+﻿namespace KeyForge.DTO
 {
-    public class ApiKeyClass
+    public class ApiKeyUserDTO
     {
-        public int Id { get; set; }
-
-        // When Create user
-        // public int UserId { get; set; }
-
         public string Key { get; set; }
         public DateTime CreateAt { get; set; }
         public DateTime ExpiresAt { get; set; }
