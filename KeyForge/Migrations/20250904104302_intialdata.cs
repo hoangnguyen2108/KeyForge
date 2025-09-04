@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KeyForge.Migrations
 {
     /// <inheritdoc />
-    public partial class initialdata : Migration
+    public partial class intialdata : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,8 @@ namespace KeyForge.Migrations
                     Key = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ExpiresAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsTrial = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -193,11 +194,11 @@ namespace KeyForge.Migrations
 
             migrationBuilder.InsertData(
                 table: "ApiKeyClasses",
-                columns: new[] { "Id", "CreateAt", "ExpiresAt", "IsActive", "Key" },
+                columns: new[] { "Id", "CreateAt", "ExpiresAt", "IsActive", "IsTrial", "Key" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 8, 21, 17, 58, 41, 132, DateTimeKind.Local).AddTicks(4468), new DateTime(2025, 9, 20, 10, 58, 41, 132, DateTimeKind.Utc).AddTicks(4482), true, "TEST - KEY - 1234567890" },
-                    { 2, new DateTime(2025, 8, 21, 17, 58, 41, 132, DateTimeKind.Local).AddTicks(4488), new DateTime(2025, 9, 20, 10, 58, 41, 132, DateTimeKind.Utc).AddTicks(4489), false, "TEST - KEY - 1234567891" }
+                    { 1, new DateTime(2025, 9, 4, 17, 42, 59, 944, DateTimeKind.Local).AddTicks(1717), new DateTime(2025, 10, 4, 10, 42, 59, 944, DateTimeKind.Utc).AddTicks(1729), true, true, "TEST - KEY - 1234567890" },
+                    { 2, new DateTime(2025, 9, 4, 17, 42, 59, 944, DateTimeKind.Local).AddTicks(1736), new DateTime(2025, 10, 4, 10, 42, 59, 944, DateTimeKind.Utc).AddTicks(1737), false, true, "TEST - KEY - 1234567891" }
                 });
 
             migrationBuilder.InsertData(
@@ -205,9 +206,19 @@ namespace KeyForge.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "84427a3f-a277-4fa6-ad17-029c05771ae7", null, "Admin", "ADMIN" },
-                    { "8b3441fe-0fea-4c25-bf8c-20ebfa45c97b", null, "User", "USER" }
+                    { "1b1bb66e-6aa2-4728-8b5b-4e6de4fd899b", null, "Admin", "ADMIN" },
+                    { "dd77f415-2502-4493-8d73-5577df42664a", null, "User", "USER" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "a4245943-934d-46eb-b3fa-123933f1f2bb", 0, "2cba86a4-4f6e-4fb0-9665-1aae0c5ecb69", "user2sup@gmail.com", true, "John", "Doe", false, null, "USER2SUP@GMAIL.COM", "USER2SUP@GMAIL.COM", "AQAAAAIAAYagAAAAEFqmT34mnP/utOht3qdVWFHRjvVQjJQTLFGmN9UzKB9X8aErS1wJoKuMTRIeFeynmg==", null, false, "38a1ba54-5cfd-40e0-8800-7b660582566a", false, "user2sup@gmail.com" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "1b1bb66e-6aa2-4728-8b5b-4e6de4fd899b", "a4245943-934d-46eb-b3fa-123933f1f2bb" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

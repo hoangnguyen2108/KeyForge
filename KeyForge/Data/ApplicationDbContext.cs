@@ -23,6 +23,8 @@ namespace KeyForge.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new RoleNameConfig());
             modelBuilder.ApplyConfiguration(new ApiKeyClassConfig());
+            modelBuilder.ApplyConfiguration(new AddUserConfig());        
+            modelBuilder.ApplyConfiguration(new RolePositionConfig());
         }
     }
 }

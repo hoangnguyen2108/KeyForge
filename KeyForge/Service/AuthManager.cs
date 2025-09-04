@@ -46,7 +46,7 @@ namespace KeyForge.Service
         public async Task<LoginResponseDto> Login(LoginDtO loginDtO)
         {
             var model = await _userManager.FindByEmailAsync(loginDtO.Email);
-            if (model == null)
+            if (model == null || !await _userManager.CheckPasswordAsync(model, loginDtO.Password))
             {
                 return null;
             }
@@ -118,7 +118,7 @@ namespace KeyForge.Service
             }
 
             var isValidToken = await _userManager.VerifyUserTokenAsync(
-                user, "HotelListingApi", "RefreshToken", request.RefreshToken
+                user, "HotelApiHosting_HoangEUF", "RefreshToken", request.RefreshToken
             );
 
             if (!isValidToken)

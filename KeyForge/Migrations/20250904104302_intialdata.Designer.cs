@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KeyForge.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250821105841_initialdata")]
-    partial class initialdata
+    [Migration("20250904104302_intialdata")]
+    partial class intialdata
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,6 +42,9 @@ namespace KeyForge.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsTrial")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Key")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -54,17 +57,19 @@ namespace KeyForge.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2025, 8, 21, 17, 58, 41, 132, DateTimeKind.Local).AddTicks(4468),
-                            ExpiresAt = new DateTime(2025, 9, 20, 10, 58, 41, 132, DateTimeKind.Utc).AddTicks(4482),
+                            CreateAt = new DateTime(2025, 9, 4, 17, 42, 59, 944, DateTimeKind.Local).AddTicks(1717),
+                            ExpiresAt = new DateTime(2025, 10, 4, 10, 42, 59, 944, DateTimeKind.Utc).AddTicks(1729),
                             IsActive = true,
+                            IsTrial = true,
                             Key = "TEST - KEY - 1234567890"
                         },
                         new
                         {
                             Id = 2,
-                            CreateAt = new DateTime(2025, 8, 21, 17, 58, 41, 132, DateTimeKind.Local).AddTicks(4488),
-                            ExpiresAt = new DateTime(2025, 9, 20, 10, 58, 41, 132, DateTimeKind.Utc).AddTicks(4489),
+                            CreateAt = new DateTime(2025, 9, 4, 17, 42, 59, 944, DateTimeKind.Local).AddTicks(1736),
+                            ExpiresAt = new DateTime(2025, 10, 4, 10, 42, 59, 944, DateTimeKind.Utc).AddTicks(1737),
                             IsActive = false,
+                            IsTrial = true,
                             Key = "TEST - KEY - 1234567891"
                         });
                 });
@@ -138,6 +143,26 @@ namespace KeyForge.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a4245943-934d-46eb-b3fa-123933f1f2bb",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2cba86a4-4f6e-4fb0-9665-1aae0c5ecb69",
+                            Email = "user2sup@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "John",
+                            LastName = "Doe",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER2SUP@GMAIL.COM",
+                            NormalizedUserName = "USER2SUP@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFqmT34mnP/utOht3qdVWFHRjvVQjJQTLFGmN9UzKB9X8aErS1wJoKuMTRIeFeynmg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "38a1ba54-5cfd-40e0-8800-7b660582566a",
+                            TwoFactorEnabled = false,
+                            UserName = "user2sup@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("KeyForge.Model.PaymentClass", b =>
@@ -191,13 +216,13 @@ namespace KeyForge.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8b3441fe-0fea-4c25-bf8c-20ebfa45c97b",
+                            Id = "dd77f415-2502-4493-8d73-5577df42664a",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "84427a3f-a277-4fa6-ad17-029c05771ae7",
+                            Id = "1b1bb66e-6aa2-4728-8b5b-4e6de4fd899b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -288,6 +313,13 @@ namespace KeyForge.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "a4245943-934d-46eb-b3fa-123933f1f2bb",
+                            RoleId = "1b1bb66e-6aa2-4728-8b5b-4e6de4fd899b"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

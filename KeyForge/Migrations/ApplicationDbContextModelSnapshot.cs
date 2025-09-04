@@ -54,8 +54,8 @@ namespace KeyForge.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2025, 8, 31, 10, 59, 47, 561, DateTimeKind.Local).AddTicks(6052),
-                            ExpiresAt = new DateTime(2025, 9, 30, 3, 59, 47, 561, DateTimeKind.Utc).AddTicks(6069),
+                            CreateAt = new DateTime(2025, 9, 4, 17, 42, 59, 944, DateTimeKind.Local).AddTicks(1717),
+                            ExpiresAt = new DateTime(2025, 10, 4, 10, 42, 59, 944, DateTimeKind.Utc).AddTicks(1729),
                             IsActive = true,
                             IsTrial = true,
                             Key = "TEST - KEY - 1234567890"
@@ -63,8 +63,8 @@ namespace KeyForge.Migrations
                         new
                         {
                             Id = 2,
-                            CreateAt = new DateTime(2025, 8, 31, 10, 59, 47, 561, DateTimeKind.Local).AddTicks(6078),
-                            ExpiresAt = new DateTime(2025, 9, 30, 3, 59, 47, 561, DateTimeKind.Utc).AddTicks(6079),
+                            CreateAt = new DateTime(2025, 9, 4, 17, 42, 59, 944, DateTimeKind.Local).AddTicks(1736),
+                            ExpiresAt = new DateTime(2025, 10, 4, 10, 42, 59, 944, DateTimeKind.Utc).AddTicks(1737),
                             IsActive = false,
                             IsTrial = true,
                             Key = "TEST - KEY - 1234567891"
@@ -140,6 +140,26 @@ namespace KeyForge.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a4245943-934d-46eb-b3fa-123933f1f2bb",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2cba86a4-4f6e-4fb0-9665-1aae0c5ecb69",
+                            Email = "user2sup@gmail.com",
+                            EmailConfirmed = true,
+                            FirstName = "John",
+                            LastName = "Doe",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER2SUP@GMAIL.COM",
+                            NormalizedUserName = "USER2SUP@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFqmT34mnP/utOht3qdVWFHRjvVQjJQTLFGmN9UzKB9X8aErS1wJoKuMTRIeFeynmg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "38a1ba54-5cfd-40e0-8800-7b660582566a",
+                            TwoFactorEnabled = false,
+                            UserName = "user2sup@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("KeyForge.Model.PaymentClass", b =>
@@ -193,13 +213,13 @@ namespace KeyForge.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b842ece5-0e43-4d3f-ac90-1e275c1bf594",
+                            Id = "dd77f415-2502-4493-8d73-5577df42664a",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "7ccc571d-ab5b-4926-a693-05b3b016438a",
+                            Id = "1b1bb66e-6aa2-4728-8b5b-4e6de4fd899b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -290,6 +310,13 @@ namespace KeyForge.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "a4245943-934d-46eb-b3fa-123933f1f2bb",
+                            RoleId = "1b1bb66e-6aa2-4728-8b5b-4e6de4fd899b"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
