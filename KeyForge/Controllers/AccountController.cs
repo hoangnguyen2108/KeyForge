@@ -39,14 +39,30 @@ namespace KeyForge.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> Login (LoginDtO loginDtO)
+        public async Task<LoginResponseDto> Login (LoginDtO loginDtO)
         {
             var update = await _authManager.Login(loginDtO);
-            if (!update)
+            if (update == null)
             {
-                return BadRequest("Wrong");
+                return null;
             }
-            return Ok("success");
+            return update;
+        }
+
+        [HttpPost]
+        [Route("refreshtoken")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<LoginResponseDto> RefreshToken(LoginResponseDto loginDto)
+        {
+            var result = await _authManager.VerifyRefreshToken(loginDto);
+            if (result == null)
+            {
+                return null;
+            }
+            return result;
+
         }
 
     }

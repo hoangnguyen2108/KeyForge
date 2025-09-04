@@ -54,17 +54,7 @@ namespace KeyForge.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutApiKeyClass(int id, ApiKeyDTO apiKeyDTO)
         {
-            var product = await _context.ApiKeyClasses.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            _mapper.Map(apiKeyDTO, product);
-            var checker = ApiKeyClassExists(apiKeyDTO.Key);
-            if(checker == true)
-            {
-                return BadRequest();
-            }
+            await _apiKeyClassService.EditApiKeyClassAsync(id, apiKeyDTO);
             await _context.SaveChangesAsync();
             return NoContent();
         }
@@ -73,30 +63,16 @@ namespace KeyForge.Controllers
         [HttpPost]
         public async Task<ActionResult<ApiKeyDTO>> PostApiKeyClass(ApiKeyDTO apiKeyDTO)
         {
-            var model = _mapper.Map<ApiKeyClass>(apiKeyDTO);
-            var checker = ApiKeyClassExists(apiKeyDTO.Key);
-            if (checker == true)
-            {
-                return BadRequest();
-            }
-            await _context.ApiKeyClasses.AddAsync(model);
-            await _context.SaveChangesAsync();
+            await _apiKeyClassService.CreateApiKeyClassAsync(apiKeyDTO);
 
-            return CreatedAtAction("GetApiKeyClasses", new { key = model.Key }, model);
+            return RedirectToAction("GetApiKeyClasses");
         }
         // DELETE: api/ApiKeyClasses/5
         
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteApiKeyClass(int id)
         {
-            var apiKeyClass = await _context.ApiKeyClasses.FindAsync(id);
-            if (apiKeyClass == null)
-            {
-                return NotFound();
-            }
-
-            _context.ApiKeyClasses.Remove(apiKeyClass);
-            await _context.SaveChangesAsync();
+            await _apiKeyClassService.DeleteApiKeyClass(id);
 
             return NoContent();
         }
