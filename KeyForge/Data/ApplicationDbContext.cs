@@ -22,23 +22,7 @@ namespace KeyForge.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new RoleNameConfig());
-            modelBuilder.Entity<ApiKeyClass>().HasData(new ApiKeyClass
-            {
-                Id = 1,
-                Key = "TEST - KEY - 1234567890",
-                CreateAt = DateTime.Now,
-                ExpiresAt = DateTime.UtcNow.AddDays(30),
-                IsActive = true,
-                IsTrial = true
-            }, new ApiKeyClass
-            {
-                Id = 2,
-                Key = "TEST - KEY - 1234567891",
-                CreateAt = DateTime.Now,
-                ExpiresAt = DateTime.UtcNow.AddDays(30),
-                IsActive = false,
-                IsTrial = true
-            });
+            modelBuilder.ApplyConfiguration(new ApiKeyClassConfig());
         }
     }
 }

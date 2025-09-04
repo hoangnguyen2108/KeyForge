@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using KeyForge.Data;
+using KeyForge.DTO;
+using KeyForge.Model;
+using KeyForge.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using KeyForge.Data;
-using KeyForge.Model;
-using KeyForge.DTO;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using KeyForge.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace KeyForge.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class ApiKeyClassesController : ControllerBase
     {
         private readonly IApiKeyClassService _apiKeyClassService;
