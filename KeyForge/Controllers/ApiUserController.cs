@@ -1,6 +1,7 @@
 ﻿using KeyForge.Data;
 using KeyForge.DTO;
 using KeyForge.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using System.Security.Claims;
 
 namespace KeyForge.Controllers
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ApiUserController : ControllerBase
@@ -65,7 +66,7 @@ namespace KeyForge.Controllers
                 Key = Guid.NewGuid().ToString("N").Substring(0,20),
                 CreateAt = DateTime.UtcNow,
                 ExpiresAt = DateTime.UtcNow.AddHours(5),
-              //  IsActive = true,
+               // IsActive = true,
                 IsTrial = true,
                 UserId = userId
             };
@@ -80,7 +81,7 @@ namespace KeyForge.Controllers
                 Key = model.Key,
                 CreateAt = model.CreateAt,
                 ExpiresAt = model.ExpiresAt,
-               // IsActive = model.IsActive,
+             // IsActive = model.IsActive,
                 IsTrial = model.IsTrial,
                 UserId = model.UserId
             };
