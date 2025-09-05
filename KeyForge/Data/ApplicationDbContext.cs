@@ -21,10 +21,17 @@ namespace KeyForge.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApiKeyClass>()
+                .HasOne(c => c.User)
+                .WithMany(c => c.ApiKeys)
+                .HasForeignKey(c => c.UserId);
+
             modelBuilder.ApplyConfiguration(new RoleNameConfig());
-            modelBuilder.ApplyConfiguration(new ApiKeyClassConfig());
-            modelBuilder.ApplyConfiguration(new AddUserConfig());        
+            modelBuilder.ApplyConfiguration(new AddUserConfig());
+            modelBuilder.ApplyConfiguration(new ApiKeyClassConfig());              
             modelBuilder.ApplyConfiguration(new RolePositionConfig());
+            modelBuilder.ApplyConfiguration(new AddNormalUserConfig());
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace KeyForge.Model
+﻿namespace KeyForge.DTO
 {
-    public class ApiKeyClass
+    public class ApiKeyClassDTO
     {
         public int Id { get; set; }
 
@@ -11,7 +11,5 @@
         public bool IsTrial { get; set; }
 
         public string? UserId { get; set; }
-
-        public ApiUser? User { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KeyForge.Configuration
 {
-    public class AddUserConfig : IEntityTypeConfiguration<ApiUser>
+    public class AddNormalUserConfig : IEntityTypeConfiguration<ApiUser>
     {
         public void Configure(EntityTypeBuilder<ApiUser> builder)
         {
@@ -13,17 +13,18 @@ namespace KeyForge.Configuration
 
             var user = new ApiUser
             {
-                Id = "a4245943-934d-46eb-b3fa-123933f1f2bb",
-                UserName = "user2sup@gmail.com",
-                NormalizedUserName = "USER2SUP@GMAIL.COM",
-                Email = "user2sup@gmail.com",
-                NormalizedEmail = "USER2SUP@GMAIL.COM",
+                Id = "ecd01b95-943e-46be-9d56-9bc89b668f58",
+                UserName = "user2normal@gmail.com",
+                NormalizedUserName = "USER2NORMAL@GMAIL.COM",
+                Email = "user2normal@gmail.com",
+                NormalizedEmail = "USER2NORMAL@GMAIL.COM",
                 EmailConfirmed = true,
-                FirstName = "John",
-                LastName = "Doe"
+                FirstName = "User",
+                LastName = "Normal"
             };
             user.PasswordHash = hasher.HashPassword(user, "Longbadao123@");
-            builder.HasData(user);          
+            builder.HasData(user);
         }
     }
 }
+

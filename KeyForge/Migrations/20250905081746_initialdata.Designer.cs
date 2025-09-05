@@ -4,6 +4,7 @@ using KeyForge.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KeyForge.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250905081746_initialdata")]
+    partial class initialdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,26 +76,6 @@ namespace KeyForge.Migrations
                             IsActive = false,
                             IsTrial = true,
                             Key = "TEST - KEY - 1234567891"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreateAt = new DateTime(2025, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2025, 10, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsTrial = true,
-                            Key = "TEST - KEY - WITHUSERAdmin - 1234567890",
-                            UserId = "a4245943-934d-46eb-b3fa-123933f1f2bb"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreateAt = new DateTime(2025, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2025, 10, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsTrial = true,
-                            Key = "TEST - KEY - WITHUSERnormaluser - 1234567899",
-                            UserId = "ecd01b95-943e-46be-9d56-9bc89b668f58"
                         });
                 });
 
@@ -171,7 +154,7 @@ namespace KeyForge.Migrations
                         {
                             Id = "a4245943-934d-46eb-b3fa-123933f1f2bb",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bc3902d5-5434-41ef-ad6f-fff6d29b160d",
+                            ConcurrencyStamp = "e2b9415f-dc70-472c-a2e0-18211036fec7",
                             Email = "user2sup@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "John",
@@ -179,29 +162,11 @@ namespace KeyForge.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER2SUP@GMAIL.COM",
                             NormalizedUserName = "USER2SUP@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJJofcz8OxXfzaZPYH3mZRWVfl6R1nSkKsXyyrgxPaE8uyO1hyYRtieYuLQcafwr9A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHQ58Dy6ZQFUFfasiVB0oDWYA8f2E9JN9t77g9isGnpBrWtoPY2VKugCwS+cf1QEKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "34e509fa-fb8a-437f-8db4-d1315b52c630",
+                            SecurityStamp = "c4b37a23-9435-4102-9703-4363b99849f3",
                             TwoFactorEnabled = false,
                             UserName = "user2sup@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "ecd01b95-943e-46be-9d56-9bc89b668f58",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "c2fe40ea-eccd-4906-acf1-4a5059496636",
-                            Email = "user2normal@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "User",
-                            LastName = "Normal",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "USER2NORMAL@GMAIL.COM",
-                            NormalizedUserName = "USER2NORMAL@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEARz8wpSR8kpKmgaQb6DoTJDV+5xTDZ1hvRdhb4+6rjIVHfz07vcK7uWD6fqynKRfg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "4e9af31b-ec5a-4490-bc08-20f1f30ca362",
-                            TwoFactorEnabled = false,
-                            UserName = "user2normal@gmail.com"
                         });
                 });
 
@@ -256,7 +221,7 @@ namespace KeyForge.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "82dffdd1-27de-44d0-a8e2-f343ec418d89",
+                            Id = "23587ca1-93fc-45e1-9af1-acefa3db1966",
                             Name = "User",
                             NormalizedName = "USER"
                         },
